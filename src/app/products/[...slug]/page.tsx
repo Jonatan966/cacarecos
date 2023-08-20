@@ -1,10 +1,13 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { ShoppingBag, Heart, Star } from "lucide-react";
+
 import { NavigationBar } from "@/components/domain/navigation-bar";
+import { ProductCard } from "@/components/domain/product-card";
 import { SectionHeader } from "@/components/molecules/section-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ShoppingBag, Heart, Star } from "lucide-react";
 
 export default function ProductPage() {
   return (
@@ -46,6 +49,24 @@ export default function ProductPage() {
           culpa sed expedita, adipisci neque deserunt velit, nisi consequatur
           omnis eos.
         </p>
+      </section>
+
+      <section className="space-y-2">
+        <SectionHeader title="Produtos relacionados">
+          <Button size="icon" variant="outline">
+            <ChevronLeftIcon />
+          </Button>
+          <Button size="icon" variant="outline">
+            <ChevronRightIcon />
+          </Button>
+        </SectionHeader>
+
+        <div className="grid grid-cols-4 gap-2 h-64">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </div>
       </section>
 
       <section>

@@ -1,11 +1,9 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { ShoppingBag, Heart } from "lucide-react";
-import Image from "next/image";
 
 import { NavigationBar } from "@/components/domain/navigation-bar";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/molecules/section-header";
+import { ProductCard } from "@/components/domain/product-card";
 
 export default function Home() {
   return (
@@ -49,7 +47,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
+      <section className="space-y-2">
         <SectionHeader title="Produtos mais vendidos">
           <Button size="icon" variant="outline">
             <ChevronLeftIcon />
@@ -60,25 +58,10 @@ export default function Home() {
         </SectionHeader>
 
         <div className="grid grid-cols-4 gap-2 h-64">
-          <div className="flex flex-col h-full gap-1 border p-1 rounded-lg">
-            <p className="font-bold">Produto tal</p>
-            <div className="relative flex-1">
-              <Image src="/next.svg" fill alt="bla" />
-            </div>
-            <div className="flex whitespace-nowrap">
-              <Badge className="">Categoria tal</Badge>
-              <b className="w-full text-center">R$ 19,99</b>
-            </div>
-            <div className="flex space-x-1">
-              <Button className="flex-1">Comprar</Button>
-              <Button size="icon" variant="outline">
-                <ShoppingBag />
-              </Button>
-              <Button size="icon" variant="outline">
-                <Heart />
-              </Button>
-            </div>
-          </div>
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </section>
     </>
