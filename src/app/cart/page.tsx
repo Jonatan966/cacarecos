@@ -12,10 +12,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { NavigationBar } from "@/components/domain/navigation-bar";
 
 export default function CartPage() {
   return (
-    <div className="container space-y-4">
+    <>
+      <NavigationBar />
       <div className="flex items-center gap-1">
         <h2 className="flex-1 font-semibold text-lg">Meu carrinho</h2>
 
@@ -62,6 +64,6 @@ export default function CartPage() {
           </TableRow>
         </TableBody>
       </Table>
-    </div>
+    </>
   );
 }

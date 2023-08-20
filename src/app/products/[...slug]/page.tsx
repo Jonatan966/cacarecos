@@ -7,7 +7,7 @@ import { ShoppingBag, Heart, Star, StarHalf } from "lucide-react";
 
 export default function ProductPage() {
   return (
-    <div className="container space-y-4">
+    <>
       <header className="flex items-center gap-2 py-2">
         <h1 className="font-bold text-xl">Cacarecos</h1>
         <Input
@@ -140,6 +140,6 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }

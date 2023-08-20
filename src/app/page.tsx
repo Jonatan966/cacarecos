@@ -1,27 +1,15 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { ShoppingBag, Heart } from "lucide-react";
 import Image from "next/image";
 
+import { NavigationBar } from "@/components/domain/navigation-bar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
   return (
-    <div className="container space-y-4">
-      <header className="flex items-center gap-2 py-2">
-        <h1 className="font-bold text-xl">Cacarecos</h1>
-        <Input
-          placeholder="Digite para pesquisar um produto"
-          className="flex-1"
-        />
-        <Button size="icon" variant="ghost">
-          <Heart />
-        </Button>
-        <Button size="icon" variant="ghost">
-          <ShoppingBag />
-        </Button>
-        <Button>Entrar</Button>
-      </header>
+    <>
+      <NavigationBar />
 
       <section className="flex gap-2">
         <div className="flex-1 border p-2 flex flex-col justify-end">
@@ -100,6 +88,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
