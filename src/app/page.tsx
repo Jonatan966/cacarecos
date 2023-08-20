@@ -5,6 +5,7 @@ import Image from "next/image";
 import { NavigationBar } from "@/components/domain/navigation-bar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/molecules/section-header";
 
 export default function Home() {
   return (
@@ -30,18 +31,14 @@ export default function Home() {
       </section>
 
       <section className="space-y-2">
-        <div className="flex items-center gap-1">
-          <h2 className="flex-1 font-semibold text-lg">
-            Procure por uma categoria
-          </h2>
-
+        <SectionHeader title="Procure por uma categoria">
           <Button size="icon" variant="outline">
             <ChevronLeftIcon />
           </Button>
           <Button size="icon" variant="outline">
             <ChevronRightIcon />
           </Button>
-        </div>
+        </SectionHeader>
 
         <div className="grid grid-cols-5 gap-2 h-16 bg-green-50">
           <Button className="h-full">Categoria tal</Button>
@@ -53,18 +50,14 @@ export default function Home() {
       </section>
 
       <section>
-        <div className="flex items-center gap-1">
-          <h2 className="flex-1 font-semibold text-lg">
-            Produtos mais vendidos
-          </h2>
-
+        <SectionHeader title="Produtos mais vendidos">
           <Button size="icon" variant="outline">
             <ChevronLeftIcon />
           </Button>
           <Button size="icon" variant="outline">
             <ChevronRightIcon />
           </Button>
-        </div>
+        </SectionHeader>
 
         <div className="grid grid-cols-4 gap-2 h-64">
           <div className="flex flex-col h-full gap-1 border p-1 rounded-lg">
