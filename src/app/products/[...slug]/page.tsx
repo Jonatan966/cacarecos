@@ -4,10 +4,10 @@ import { ShoppingBag, Heart, Star } from "lucide-react";
 import { NavigationBar } from "@/components/domain/navigation-bar";
 import { ProductCard } from "@/components/domain/product-card";
 import { SectionHeader } from "@/components/molecules/section-header";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
+import { ProductReview } from "@/components/domain/product-review";
+import { ReviewResume } from "@/components/domain/review-resume";
 
 export default function ProductPage() {
   return (
@@ -85,61 +85,17 @@ export default function ProductPage() {
               <span className="ml-2">4,7 de 5</span>
             </div>
 
-            <div className="flex items-center whitespace-nowrap gap-2">
-              <span className="">5 estrelas</span>
-              <Progress value={5} />
-              <span>80&</span>
-            </div>
+            <ReviewResume />
+            <ReviewResume />
+            <ReviewResume />
+            <ReviewResume />
+            <ReviewResume />
           </div>
 
           <div className="space-y-2">
-            <div className="bg-secondary p-2 rounded-md">
-              <div className="flex items-center gap-1">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <span>José dos Santos</span>
-              </div>
-              <div className="flex items-center">
-                <Star size={16} />
-                <Star size={16} />
-                <Star size={16} />
-                <Star size={16} />
-                <Star size={16} />
-                <b className="ml-2">Muito bonito</b>
-              </div>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Voluptatibus quo eos tempore possimus nemo aspernatur aliquam
-                ducimus quod vero in deleniti repudiandae iure, ad suscipit
-                ipsam reiciendis omnis at pariatur?
-              </p>
-            </div>
-
-            <div className="bg-secondary p-2 rounded-md">
-              <div className="flex items-center gap-1">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <span>José dos Santos</span>
-              </div>
-              <div className="flex items-center">
-                <Star size={16} />
-                <Star size={16} />
-                <Star size={16} />
-                <Star size={16} />
-                <Star size={16} />
-                <b className="ml-2">Muito bonito</b>
-              </div>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Voluptatibus quo eos tempore possimus nemo aspernatur aliquam
-                ducimus quod vero in deleniti repudiandae iure, ad suscipit
-                ipsam reiciendis omnis at pariatur?
-              </p>
-            </div>
+            <ProductReview />
+            <ProductReview />
+            <ProductReview />
           </div>
         </div>
       </section>
