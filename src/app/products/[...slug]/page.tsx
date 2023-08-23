@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProductReview } from "@/components/domain/product-review";
 import { ReviewResume } from "@/components/domain/review-resume";
+import { ContentCarousel } from "@/components/molecules/content-carousel";
 
 export default function ProductPage() {
   return (
@@ -15,7 +16,20 @@ export default function ProductPage() {
       <NavigationBar />
 
       <section className="grid grid-cols-2 gap-2 h-96">
-        <div className="border"></div>
+        <ContentCarousel
+          listWidth={32}
+          items={[
+            {
+              imageUrl: "/vercel.svg",
+            },
+            {
+              imageUrl: "/vercel.svg",
+            },
+            {
+              imageUrl: "/vercel.svg",
+            },
+          ]}
+        />
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold">Produto tal</h1>
           <Badge className="self-start">Categoria tal</Badge>

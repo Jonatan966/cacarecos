@@ -4,29 +4,30 @@ import { NavigationBar } from "@/components/domain/navigation-bar";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/molecules/section-header";
 import { ProductCard } from "@/components/domain/product-card";
+import { ContentCarousel } from "@/components/molecules/content-carousel";
 
 export default function Home() {
   return (
     <>
       <NavigationBar />
 
-      <section className="flex gap-2">
-        <div className="flex-1 border p-2 flex flex-col justify-end">
-          <p>Texto chamativo</p>
-          <Button>Ação</Button>
-        </div>
-        <div className="grid grid-rows-3 gap-2 w-64">
-          <Button variant="outline" className="h-28">
-            Card
-          </Button>
-          <Button variant="outline" className="h-28">
-            Card
-          </Button>
-          <Button variant="outline" className="h-28">
-            Card
-          </Button>
-        </div>
-      </section>
+      <ContentCarousel
+        items={[
+          {
+            imageUrl: "/vercel.svg",
+            description: "Descrição interessante",
+            action: <Button>Ação</Button>,
+          },
+          {
+            imageUrl: "/vercel.svg",
+          },
+          {
+            imageUrl: "/vercel.svg",
+          },
+        ]}
+        isPlaying
+        className="h-96"
+      />
 
       <section className="space-y-2">
         <SectionHeader title="Procure por uma categoria">
