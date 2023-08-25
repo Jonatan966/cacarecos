@@ -1,4 +1,6 @@
 import "./globals.css";
+import "react-multi-carousel/lib/styles.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
