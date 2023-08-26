@@ -55,7 +55,7 @@ export function ContentCarousel({
   return (
     <section className={cn("flex gap-2", className)}>
       <div className="flex-1 border p-2 flex flex-col justify-end relative">
-        <Image fill src={selectedItem.imageUrl} alt="bla" />
+        <Image fill src={selectedItem.imageUrl} alt="bla" objectFit="contain" />
         {selectedItem?.description && <p>{selectedItem.description}</p>}
         {selectedItem?.action}
       </div>
@@ -70,7 +70,7 @@ export function ContentCarousel({
             key={`carousel-${itemIndex}`}
             onClick={() => setSelectedItemKey(itemIndex)}
           >
-            <Image fill src={item.imageUrl} alt="bla" />
+            <Image fill src={item.imageUrl} alt="bla" objectFit="contain" />
           </Button>
         ))}
       </div>
