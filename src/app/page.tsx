@@ -6,7 +6,7 @@ import { ProductsSection } from "@/components/organisms/products-section";
 
 export default function Home() {
   return (
-    <div className="mb-4">
+    <>
       <NavigationBar />
 
       <ContentCarousel
@@ -30,6 +30,6 @@ export default function Home() {
       <CategoriesSection />
 
       <ProductsSection />
-    </div>
+    </>
   );
 }
