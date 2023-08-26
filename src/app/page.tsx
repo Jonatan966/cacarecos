@@ -32,7 +32,7 @@ export default async function Home() {
 
       <CategoriesSection categories={categories} />
 
-      <ProductsSection products={products} />
+      <ProductsSection products={products} title="Produtos mais vendidos" />
     </>
   );
 }
