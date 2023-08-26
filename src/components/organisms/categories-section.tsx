@@ -5,8 +5,13 @@ import { SectionHeader } from "../molecules/section-header";
 import { Button } from "../ui/button";
 import Carousel from "react-multi-carousel";
 import { useRef } from "react";
+import { Category } from "@/entities/category";
 
-export function CategoriesSection() {
+interface CategoriesSectionProps {
+  categories: Category[];
+}
+
+export function CategoriesSection(props: CategoriesSectionProps) {
   const carouselRef = useRef<Carousel>();
 
   return (
@@ -50,15 +55,11 @@ export function CategoriesSection() {
         arrows={false}
         slidesToSlide={2}
       >
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
-        <Button className="h-full w-full">Categoria tal</Button>
+        {props.categories.map((category) => (
+          <Button key={category.id} className="h-full w-full">
+            {category.title}
+          </Button>
+        ))}
       </Carousel>
     </section>
   );

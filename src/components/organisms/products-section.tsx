@@ -6,8 +6,13 @@ import { Button } from "../ui/button";
 import { ProductCard } from "../domain/product-card";
 import Carousel from "react-multi-carousel";
 import { useRef } from "react";
+import { Product } from "@/entities/product";
 
-export function ProductsSection() {
+interface ProductsSectionProps {
+  products: Product[];
+}
+
+export function ProductsSection(props: ProductsSectionProps) {
   const carouselRef = useRef<Carousel>();
 
   return (
@@ -51,12 +56,9 @@ export function ProductsSection() {
         arrows={false}
         slidesToSlide={2}
       >
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {props.products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </Carousel>
     </section>
   );

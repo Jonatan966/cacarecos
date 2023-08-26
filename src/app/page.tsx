@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ContentCarousel } from "@/components/molecules/content-carousel";
 import { CategoriesSection } from "@/components/organisms/categories-section";
 import { ProductsSection } from "@/components/organisms/products-section";
+import { hygraphService } from "@/services/hygraph";
 
-export default function Home() {
+export default async function Home() {
+  const { categories, products } = await hygraphService.getHomeResume();
+
   return (
     <>
       <NavigationBar />
@@ -27,9 +30,9 @@ export default function Home() {
         className="h-96"
       />
 
-      <CategoriesSection />
+      <CategoriesSection categories={categories} />
 
-      <ProductsSection />
+      <ProductsSection products={products} />
     </>
   );
 }
