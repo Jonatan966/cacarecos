@@ -10,6 +10,7 @@ import { Product } from "@/entities/product";
 
 interface ProductsSectionProps {
   products: Product[];
+  title: string;
 }
 
 export function ProductsSection(props: ProductsSectionProps) {
@@ -17,7 +18,7 @@ export function ProductsSection(props: ProductsSectionProps) {
 
   return (
     <section className="space-y-2">
-      <SectionHeader title="Produtos mais vendidos">
+      <SectionHeader title={props.title}>
         <Button
           size="icon"
           variant="outline"
