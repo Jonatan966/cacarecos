@@ -12,13 +12,13 @@ import { hygraphService } from "@/services/hygraph";
 
 interface ProductPageProps {
   params: {
-    slug: string[];
+    slug: string;
   };
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const product = await hygraphService.getProductBySlug({
-    slug: params.slug[0],
+    slug: params.slug,
   });
 
   const relatedProducts = await hygraphService.getProductsByCategory({
@@ -74,30 +74,36 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <Button>Deixe sua opinião</Button>
         </SectionHeader>
 
-        <div className="flex gap-6 mt-2">
-          <div className="max-w-sm w-full">
-            <div className="flex">
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <Star />
-              <span className="ml-2">4,7 de 5</span>
+        {product.product_ratings.length ? (
+          <div className="flex gap-6 mt-2">
+            <div className="max-w-sm w-full">
+              <div className="flex">
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <span className="ml-2">4,7 de 5</span>
+              </div>
+
+              <ReviewResume />
+              <ReviewResume />
+              <ReviewResume />
+              <ReviewResume />
+              <ReviewResume />
             </div>
 
-            <ReviewResume />
-            <ReviewResume />
-            <ReviewResume />
-            <ReviewResume />
-            <ReviewResume />
+            <div className="space-y-2">
+              <ProductReview />
+              <ProductReview />
+              <ProductReview />
+            </div>
           </div>
-
-          <div className="space-y-2">
-            <ProductReview />
-            <ProductReview />
-            <ProductReview />
-          </div>
-        </div>
+        ) : (
+          <strong className="w-full text-center block">
+            Seja o primeiro a availiar
+          </strong>
+        )}
       </section>
     </>
   );
