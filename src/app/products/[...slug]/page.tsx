@@ -8,8 +8,24 @@ import { ProductReview } from "@/components/domain/product-review";
 import { ReviewResume } from "@/components/domain/review-resume";
 import { ContentCarousel } from "@/components/molecules/content-carousel";
 import { ProductsSection } from "@/components/organisms/products-section";
+import { hygraphService } from "@/services/hygraph";
 
-export default function ProductPage() {
+interface ProductPageProps {
+  params: {
+    slug: string[];
+  };
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
+  const product = await hygraphService.getProductBySlug({
+    slug: params.slug[0],
+  });
+
+  const relatedProducts = await hygraphService.getProductsByCategory({
+    categorySlug: product.category.slug,
+    skipProduct: product.id,
+  });
+
   return (
     <>
       <NavigationBar />
@@ -17,29 +33,16 @@ export default function ProductPage() {
       <section className="grid grid-cols-2 gap-2 h-96">
         <ContentCarousel
           listWidth={32}
-          items={[
-            {
-              imageUrl: "/vercel.svg",
-            },
-            {
-              imageUrl: "/vercel.svg",
-            },
-            {
-              imageUrl: "/vercel.svg",
-            },
-          ]}
+          items={product.images.map((image) => ({
+            imageUrl: image.url,
+          }))}
         />
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-bold">Produto tal</h1>
-          <Badge className="self-start">Categoria tal</Badge>
-          <p className="mb-auto">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-            cupiditate, neque placeat sit doloribus explicabo, illo sapiente
-            molestiae minus veniam deleniti aliquam reiciendis optio officia ex,
-            error modi laudantium dignissimos!
-          </p>
+          <h1 className="text-2xl font-bold">{product.name}</h1>
+          <Badge className="self-start">{product.category.title}</Badge>
+          <p className="mb-auto">{product.description}</p>
 
-          <b className="text-lg">R$ 99,99</b>
+          <b className="text-lg">R$ {product.price}</b>
 
           <div className="flex space-x-1">
             <Button className="flex-1">Comprar</Button>
@@ -53,18 +56,18 @@ export default function ProductPage() {
         </div>
       </section>
 
-      <section>
-        <SectionHeader title="Outros detalhes" />
+      {product.other_details && (
+        <section>
+          <SectionHeader title="Outros detalhes" />
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo officiis
-          atque at laboriosam dicta molestiae quaerat earum veritatis saepe
-          culpa sed expedita, adipisci neque deserunt velit, nisi consequatur
-          omnis eos.
-        </p>
-      </section>
+          <p>{product.other_details}</p>
+        </section>
+      )}
 
-      <ProductsSection />
+      <ProductsSection
+        title="Produtos relacionados"
+        products={relatedProducts}
+      />
 
       <section>
         <SectionHeader title="Opinião dos consumidores">
