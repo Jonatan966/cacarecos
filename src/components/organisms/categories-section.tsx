@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import Carousel from "react-multi-carousel";
 import { useRef } from "react";
 import { Category } from "@/entities/category";
+import Link from "next/link";
 
 interface CategoriesSectionProps {
   categories: Category[];
@@ -56,9 +57,9 @@ export function CategoriesSection(props: CategoriesSectionProps) {
         slidesToSlide={2}
       >
         {props.categories.map((category) => (
-          <Button key={category.id} className="h-full w-full">
-            {category.title}
-          </Button>
+          <Link key={category.id} href={`/products?category=${category.slug}`}>
+            <Button className="h-full w-full">{category.title}</Button>
+          </Link>
         ))}
       </Carousel>
     </section>
