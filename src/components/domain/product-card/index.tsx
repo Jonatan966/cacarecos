@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { ShoppingBag, Heart } from "lucide-react";
 
@@ -13,7 +15,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link href={`/products/${product.slug}`}>
-      <div className="flex flex-col h-full gap-1 border p-1 rounded-lg cursor-pointer">
+      <div className="flex flex-col h-64 gap-1 border p-1 rounded-lg cursor-pointer">
         <p className="font-bold">{product.name}</p>
         <div className="relative flex-1">
           <Image
