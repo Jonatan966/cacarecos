@@ -2,10 +2,12 @@ import { gql } from "graphql-request";
 import { hygraphApi } from "./api";
 import { Product } from "@/entities/product";
 import { Category } from "@/entities/category";
+import { Carousel } from "@/entities/carousel";
 
 interface GetHomeResumeResponse {
   products: Product[];
   categories: Category[];
+  carousels: Carousel[];
 }
 
 export async function getHomeResume() {
@@ -30,6 +32,26 @@ export async function getHomeResume() {
           title
         }
         slug
+      }
+
+      carousels {
+        id
+        title
+        cta
+        image {
+          url
+          id
+        }
+        refereal_product {
+          slug
+          images(first: 1) {
+            id
+            url
+          }
+        }
+        refereal_category {
+          slug
+        }
       }
     }
   `;
