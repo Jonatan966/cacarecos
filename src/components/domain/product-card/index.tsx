@@ -1,12 +1,9 @@
-"use client";
-
 import Image from "next/image";
-import { ShoppingBag, Heart } from "lucide-react";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Product } from "@/entities/product";
-import Link from "next/link";
+import { ProductActions } from "./product-actions";
 
 interface ProductCardProps {
   product: Product;
@@ -29,25 +26,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <Badge className="">{product.category.title}</Badge>
           <b className="w-full text-center">R$ {product.price}</b>
         </div>
-        <div className="flex space-x-1">
-          <Button className="flex-1" onClick={(e) => e.preventDefault()}>
-            Comprar
-          </Button>
-          <Button
-            size="icon"
-            variant="outline"
-            onClick={(e) => e.preventDefault()}
-          >
-            <ShoppingBag />
-          </Button>
-          <Button
-            size="icon"
-            variant="outline"
-            onClick={(e) => e.preventDefault()}
-          >
-            <Heart />
-          </Button>
-        </div>
+        <ProductActions product={product} />
       </div>
     </Link>
   );

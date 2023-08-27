@@ -1,4 +1,4 @@
-import { ShoppingBag, Heart, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 import { SectionHeader } from "@/components/molecules/section-header";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,7 @@ import { ReviewResume } from "@/components/domain/review-resume";
 import { ContentCarousel } from "@/components/molecules/content-carousel";
 import { ProductsSection } from "@/components/organisms/products-section";
 import { hygraphService } from "@/services/hygraph";
+import { ProductActions } from "@/components/domain/product-card/product-actions";
 
 interface ProductPageProps {
   params: {
@@ -41,15 +42,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           <b className="text-lg">R$ {product.price}</b>
 
-          <div className="flex space-x-1">
-            <Button className="flex-1">Comprar</Button>
-            <Button size="icon" variant="outline">
-              <ShoppingBag />
-            </Button>
-            <Button size="icon" variant="outline">
-              <Heart />
-            </Button>
-          </div>
+          <ProductActions product={product} />
         </div>
       </section>
 
