@@ -3,4 +3,5 @@ export interface Rating {
   stars: number;
   title: string;
   details: string;
+  createdAt: string;
 }

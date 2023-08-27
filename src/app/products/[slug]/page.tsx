@@ -90,10 +90,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <ReviewResume />
             </div>
 
-            <div className="space-y-2">
-              <ProductReview />
-              <ProductReview />
-              <ProductReview />
+            <div className="space-y-2 flex-1">
+              {product.product_ratings.map((rating) => (
+                <ProductReview key={rating.id} rating={rating} />
+              ))}
             </div>
           </div>
         ) : (
