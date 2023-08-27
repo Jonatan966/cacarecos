@@ -26,6 +26,7 @@ export function ContentCarousel({
   velocityInMs = FIVE_SECONDS,
   className,
 }: ContentCarouselProps) {
+  const [isPaused, setIsPaused] = useState(false);
   const [selectedItemKey, setSelectedItemKey] = useState(0);
 
   const selectedItem = items[selectedItemKey];
@@ -35,7 +36,7 @@ export function ContentCarousel({
   useEffect(() => {
     clearTimeout(autoPlayingTimerRef.current);
 
-    if (!isPlaying) {
+    if (!isPlaying || isPaused) {
       return;
     }
 
@@ -50,14 +51,26 @@ export function ContentCarousel({
     );
 
     return () => clearTimeout(autoPlayingTimerRef.current);
-  }, [isPlaying, items, velocityInMs]);
+  }, [isPlaying, isPaused, items, velocityInMs]);
 
   return (
     <section className={cn("flex gap-2", className)}>
-      <div className="flex-1 border p-2 flex flex-col justify-end relative">
-        <Image fill src={selectedItem.imageUrl} alt="bla" objectFit="contain" />
-        {selectedItem?.description && <p>{selectedItem.description}</p>}
-        {selectedItem?.action}
+      <div className="flex-1 border p-2 flex flex-col justify-end">
+        <div className="relative flex-1">
+          <Image
+            fill
+            src={selectedItem.imageUrl}
+            alt="bla"
+            objectFit="contain"
+          />
+        </div>
+        <div
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {selectedItem?.description && <p>{selectedItem.description}</p>}
+          {selectedItem?.action}
+        </div>
       </div>
       <div
         className={"flex flex-col gap-2"}
@@ -69,6 +82,8 @@ export function ContentCarousel({
             className="flex-1 relative"
             key={`carousel-${itemIndex}`}
             onClick={() => setSelectedItemKey(itemIndex)}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
             <Image fill src={item.imageUrl} alt="bla" objectFit="contain" />
           </Button>
