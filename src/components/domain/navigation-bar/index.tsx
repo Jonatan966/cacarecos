@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { UserButton, useAuth } from "@clerk/nextjs";
 
 export function NavigationBar() {
   const router = useRouter();
+  const { isSignedIn } = useAuth();
 
   function handleSearch(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
@@ -34,7 +36,13 @@ export function NavigationBar() {
           <ShoppingBag />
         </Button>
       </Link>
-      <Button>Entrar</Button>
+      {isSignedIn ? (
+        <UserButton afterSignOutUrl="/" />
+      ) : (
+        <Link href="/sign-in">
+          <Button>Entrar</Button>
+        </Link>
+      )}
     </header>
   );
 }
