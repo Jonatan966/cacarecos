@@ -1,6 +1,5 @@
 import { ShoppingBag, Heart, Star } from "lucide-react";
 
-import { NavigationBar } from "@/components/domain/navigation-bar";
 import { SectionHeader } from "@/components/molecules/section-header";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,8 +27,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <>
-      <NavigationBar />
-
       <section className="grid grid-cols-2 gap-2 h-96">
         <ContentCarousel
           listWidth={32}

@@ -1,4 +1,3 @@
-import { NavigationBar } from "@/components/domain/navigation-bar";
 import { Button } from "@/components/ui/button";
 import { ContentCarousel } from "@/components/molecules/content-carousel";
 import { CategoriesSection } from "@/components/organisms/categories-section";
@@ -10,8 +9,6 @@ export default async function Home() {
 
   return (
     <>
-      <NavigationBar />
-
       <ContentCarousel
         items={[
           {
