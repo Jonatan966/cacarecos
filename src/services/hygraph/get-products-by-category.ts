@@ -4,7 +4,7 @@ import { Product } from "@/entities/product";
 
 interface GetProductsProps {
   categorySlug: string;
-  skipProduct: string;
+  skipProduct?: string;
 }
 
 interface GetProductsResponse {
@@ -35,7 +35,7 @@ export async function getProductsByCategory(props: GetProductsProps) {
 
   const response = await hygraphApi.request<GetProductsResponse>(query, {
     categorySlug: props.categorySlug,
-    skipProduct: props.skipProduct,
+    skipProduct: props.skipProduct || "",
   });
 
   return response.products;
