@@ -4,6 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NavigationBar } from "@/components/domain/navigation-bar";
+import { CartContextProvider } from "@/components/providers/cart-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="container space-y-4 mb-4">
-          <NavigationBar />
+        <CartContextProvider>
+          <div className="container space-y-4 mb-4">
+            <NavigationBar />
 
-          {children}
-        </div>
+            {children}
+          </div>
+        </CartContextProvider>
       </body>
     </html>
   );

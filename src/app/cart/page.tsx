@@ -1,3 +1,5 @@
+"use client";
+
 import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,17 +14,21 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { NavigationBar } from "@/components/domain/navigation-bar";
+import { useCart } from "@/components/providers/cart-provider";
 
 export default function CartPage() {
+  const { cart, totalPrice, setProductUnits, removeProductFromCart } =
+    useCart();
+
+  const cartProducts = Object.values(cart);
+
   return (
     <>
-      <NavigationBar />
       <div className="flex items-center gap-1">
         <h2 className="flex-1 font-semibold text-lg">Meu carrinho</h2>
 
-        <b>Total: R$ 19,90</b>
-        <Button>Finalizar compra</Button>
+        <b>Total: R$ {totalPrice}</b>
+        <Button disabled={totalPrice === 0}>Finalizar compra</Button>
       </div>
 
       <Table>
@@ -36,32 +42,65 @@ export default function CartPage() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow>
-            <TableCell className="flex space-x-2">
-              <Image src="/vercel.svg" width={64} height={64} alt="produto" />
-              <div className="flex flex-col items-start">
-                <span>Produto tal</span>
-                <Badge>Categoria tal</Badge>
-              </div>
-            </TableCell>
-            <TableCell>
-              <div className="flex items-center">
-                <Button variant="outline" size="sm">
-                  -
+          {cartProducts.map((product) => (
+            <TableRow key={product.slug}>
+              <TableCell className="flex space-x-2 items-center">
+                <Image
+                  src={product.imageUrl}
+                  width={64}
+                  height={64}
+                  alt="produto"
+                  className="h-[64px] object-contain"
+                />
+                <div className="flex flex-col items-start">
+                  <span>{product.name}</span>
+                  <Badge>{product.categoryTitle}</Badge>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="flex items-center">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      setProductUnits(product.id, product.quantity - 1)
+                    }
+                  >
+                    -
+                  </Button>
+                  <Input
+                    className="w-20"
+                    value={product.quantity}
+                    type="number"
+                    onChange={(event) =>
+                      setProductUnits(product.id, Number(event.target.value))
+                    }
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      setProductUnits(product.id, product.quantity + 1)
+                    }
+                  >
+                    +
+                  </Button>
+                </div>
+              </TableCell>
+              <TableCell className="font-bold">
+                R$ {product.pricePerUnit * product.quantity}
+              </TableCell>
+              <TableCell className="text-right">
+                <Button
+                  size="icon"
+                  variant="destructive"
+                  onClick={() => removeProductFromCart(product.id)}
+                >
+                  <Trash />
                 </Button>
-                <Input className="w-20" value={24} type="number" />
-                <Button variant="outline" size="sm">
-                  +
-                </Button>
-              </div>
-            </TableCell>
-            <TableCell className="font-bold">R$ 19,99</TableCell>
-            <TableCell className="text-right">
-              <Button size="icon" variant="destructive">
-                <Trash />
-              </Button>
-            </TableCell>
-          </TableRow>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </>
