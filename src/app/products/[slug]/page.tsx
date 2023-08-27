@@ -9,6 +9,7 @@ import { ContentCarousel } from "@/components/molecules/content-carousel";
 import { ProductsSection } from "@/components/organisms/products-section";
 import { hygraphService } from "@/services/hygraph";
 import { ProductActions } from "@/components/domain/product-card/product-actions";
+import { formatCurrency } from "@/utils/format-currency";
 
 interface ProductPageProps {
   params: {
@@ -26,6 +27,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
     skipProduct: product.id,
   });
 
+  const formattedPrice = formatCurrency(product.price);
+
   return (
     <>
       <section className="grid grid-cols-2 gap-2 h-96">
@@ -40,7 +43,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <Badge className="self-start">{product.category.title}</Badge>
           <p className="mb-auto">{product.description}</p>
 
-          <b className="text-lg">R$ {product.price}</b>
+          <b className="text-lg">{formattedPrice}</b>
 
           <ProductActions product={product} />
         </div>

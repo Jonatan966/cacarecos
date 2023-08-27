@@ -15,19 +15,21 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/components/providers/cart-provider";
+import { formatCurrency } from "@/utils/format-currency";
 
 export default function CartPage() {
   const { cart, totalPrice, setProductUnits, removeProductFromCart } =
     useCart();
 
   const cartProducts = Object.values(cart);
+  const formattedTotalPrice = formatCurrency(totalPrice);
 
   return (
     <>
       <div className="flex items-center gap-1">
         <h2 className="flex-1 font-semibold text-lg">Meu carrinho</h2>
 
-        <b>Total: R$ {totalPrice}</b>
+        <b>Total: {formattedTotalPrice}</b>
         <Button disabled={totalPrice === 0}>Finalizar compra</Button>
       </div>
 
@@ -88,7 +90,7 @@ export default function CartPage() {
                 </div>
               </TableCell>
               <TableCell className="font-bold">
-                R$ {product.pricePerUnit * product.quantity}
+                {formatCurrency(product.pricePerUnit * product.quantity)}
               </TableCell>
               <TableCell className="text-right">
                 <Button
