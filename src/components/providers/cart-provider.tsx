@@ -1,27 +1,26 @@
 "use client";
 
+import { Cart } from "@/entities/cart";
 import { Product } from "@/entities/product";
-import { ReactNode, createContext, useContext, useMemo, useState } from "react";
+import { localStorageService } from "@/services/local-storage";
+import { StorageKey } from "@/services/local-storage/types";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 interface CartContextProps {
-  cart: Record<
-    string,
-    {
-      id: string;
-      priceId: string;
-      name: string;
-      slug: string;
-      imageUrl: string;
-      categoryTitle: string;
-      quantity: number;
-      pricePerUnit: number;
-    }
-  >;
+  cart: Cart;
   totalPrice: number;
   addProductToCart(product: Product): void;
   setProductUnits(productId: string, quantity: number): void;
   removeProductFromCart(productId: string): void;
   toggleProductFromCart(product: Product): void;
+  clearCart(): void;
 }
 
 interface CartContextProviderProps {
@@ -31,7 +30,13 @@ interface CartContextProviderProps {
 const CartContext = createContext({} as CartContextProps);
 
 export function CartContextProvider(props: CartContextProviderProps) {
-  const [cart, setCart] = useState<CartContextProps["cart"]>({});
+  const [cart, setCart] = useState<CartContextProps["cart"]>(
+    localStorageService.retrieveItem(StorageKey.CART) || {}
+  );
+
+  useEffect(() => {
+    localStorageService.storeItem(StorageKey.CART, cart);
+  }, [cart]);
 
   const totalPrice = useMemo(() => {
     let mountedTotalPrice = 0;
@@ -94,6 +99,10 @@ export function CartContextProvider(props: CartContextProviderProps) {
     addProductToCart(product);
   }
 
+  function clearCart() {
+    localStorageService.removeItem(StorageKey.CART);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -103,6 +112,7 @@ export function CartContextProvider(props: CartContextProviderProps) {
         removeProductFromCart,
         setProductUnits,
         toggleProductFromCart,
+        clearCart,
       }}
     >
       {props.children}
