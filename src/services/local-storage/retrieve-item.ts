@@ -1,7 +1,7 @@
 import { StorageKey, StorageValues } from "./types";
 
 export function retrieveItem<K extends StorageKey>(key: K) {
-  const item = sessionStorage.getItem(key);
+  const item = localStorage.getItem(key);
 
   if (!item) {
     return;
