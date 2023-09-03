@@ -8,6 +8,7 @@ interface CartContextProps {
     string,
     {
       id: string;
+      priceId: string;
       name: string;
       slug: string;
       imageUrl: string;
@@ -50,6 +51,7 @@ export function CartContextProvider(props: CartContextProviderProps) {
       [product.id]: {
         id: product.id,
         name: product.name,
+        priceId: product.priceId,
         slug: product.slug,
         imageUrl: product.images[0].url,
         categoryTitle: product.category.title,
