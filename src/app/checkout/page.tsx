@@ -1,8 +1,8 @@
 "use client";
 
 import { metaService } from "@/services/meta";
-import { sessionStorageService } from "@/services/session-storage";
-import { StorageKey } from "@/services/session-storage/types";
+import { localStorageService } from "@/services/local-storage";
+import { StorageKey } from "@/services/local-storage/types";
 import { stripeJsService } from "@/services/stripe-js";
 import { Loader } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -13,7 +13,7 @@ export default function CheckoutPage() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const checkout = sessionStorageService.retrieveItem(StorageKey.CHECKOUT);
+    const checkout = localStorageService.retrieveItem(StorageKey.CHECKOUT);
     const referer = searchParams.get("referer");
 
     if (!checkout || !checkout?.length) {
@@ -21,7 +21,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    sessionStorageService.removeItem(StorageKey.CHECKOUT);
+    localStorageService.removeItem(StorageKey.CHECKOUT);
 
     async function _checkout() {
       const checkoutSessionId = await metaService.checkout({

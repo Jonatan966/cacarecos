@@ -4,8 +4,8 @@ import { useCart } from "@/components/providers/cart-provider";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/entities/product";
 import { metaService } from "@/services/meta";
-import { sessionStorageService } from "@/services/session-storage";
-import { StorageKey } from "@/services/session-storage/types";
+import { localStorageService } from "@/services/local-storage";
+import { StorageKey } from "@/services/local-storage/types";
 import { stripeJsService } from "@/services/stripe-js";
 import { useAuth } from "@clerk/nextjs";
 import { Heart, Loader, ShoppingBag } from "lucide-react";
@@ -32,7 +32,7 @@ export function ProductActions({ product }: ProductActionsProps) {
     event.preventDefault();
 
     if (!userId) {
-      sessionStorageService.storeItem(StorageKey.CHECKOUT, [
+      localStorageService.storeItem(StorageKey.CHECKOUT, [
         {
           priceId: product.priceId,
           quantity: 1,
