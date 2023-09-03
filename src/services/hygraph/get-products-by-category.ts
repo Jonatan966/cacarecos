@@ -24,6 +24,7 @@ export async function getProductsByCategory(props: GetProductsProps) {
           url
         }
         price
+        priceId
         category {
           id
           title

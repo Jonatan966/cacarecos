@@ -6,6 +6,7 @@ export interface Product {
   slug: string;
   name: string;
   price: number;
+  priceId: string;
   description: string;
   other_details: string;
   images: ProductImage[];

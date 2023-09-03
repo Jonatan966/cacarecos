@@ -17,6 +17,7 @@ export async function getProductBySlug(props: GetProductBySlugProps) {
         id
         name
         price
+        priceId
         other_details
         slug
         description

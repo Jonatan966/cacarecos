@@ -27,6 +27,7 @@ export async function getHomeResume() {
           url
         }
         price
+        priceId
         category {
           id
           title
