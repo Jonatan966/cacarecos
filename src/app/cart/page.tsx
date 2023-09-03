@@ -16,6 +16,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/components/providers/cart-provider";
 import { formatCurrency } from "@/utils/format-currency";
+import { CheckoutButton } from "@/components/domain/checkout-button";
 
 export default function CartPage() {
   const { cart, totalPrice, setProductUnits, removeProductFromCart } =
@@ -30,7 +31,7 @@ export default function CartPage() {
         <h2 className="flex-1 font-semibold text-lg">Meu carrinho</h2>
 
         <b>Total: {formattedTotalPrice}</b>
-        <Button disabled={totalPrice === 0}>Finalizar compra</Button>
+        <CheckoutButton />
       </div>
 
       <Table>
