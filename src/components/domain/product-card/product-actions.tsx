@@ -34,6 +34,7 @@ export function ProductActions({ product }: ProductActionsProps) {
     if (!userId) {
       localStorageService.storeItem(StorageKey.CHECKOUT, [
         {
+          id: product.id,
           priceId: product.priceId,
           quantity: 1,
         },
@@ -49,6 +50,7 @@ export function ProductActions({ product }: ProductActionsProps) {
       const checkoutSessionId = await metaService.checkout({
         products: [
           {
+            id: product.id,
             priceId: product.priceId,
             quantity: 1,
           },

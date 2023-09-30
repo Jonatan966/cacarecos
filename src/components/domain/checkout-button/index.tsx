@@ -27,6 +27,7 @@ const CheckoutButtonComponent: ForwardRefRenderFunction<
   const checkoutItems = Object.values(cart).map<CheckoutItem>((product) => ({
     priceId: product.priceId,
     quantity: product.quantity,
+    id: product.id,
   }));
 
   const { userId } = useAuth();

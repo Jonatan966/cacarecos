@@ -2,6 +2,7 @@ import { metaApi } from "./api";
 
 interface CheckoutProps {
   products: {
+    id: string;
     priceId: string;
     quantity: number;
   }[];

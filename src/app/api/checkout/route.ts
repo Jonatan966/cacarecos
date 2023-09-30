@@ -11,6 +11,7 @@ export async function POST(req: NextRequest) {
       products: z
         .array(
           z.object({
+            id: z.string(),
             priceId: z.string(),
             quantity: z.number().gte(1),
           })

@@ -9,6 +9,7 @@ export interface StorageValues {
   [StorageKey.CHECKOUT]: {
     priceId: string;
     quantity: number;
+    id: string;
   }[];
   [StorageKey.CART]: Cart;
 }
