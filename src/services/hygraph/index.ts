@@ -3,6 +3,7 @@ import { getHomeResume } from "./get-home-resume";
 import { getProductBySlug } from "./get-product-by-slug";
 import { getProductsByCategory } from "./get-products-by-category";
 import { getProductsByTerm } from "./get-products-by-term";
+import { getProductsImagesByIDs } from "./get-products-images-by-ids";
 
 export const hygraphService = {
   getCategories,
@@ -10,4 +11,5 @@ export const hygraphService = {
   getHomeResume,
   getProductBySlug,
   getProductsByTerm,
+  getProductsImagesByIDs,
 };
