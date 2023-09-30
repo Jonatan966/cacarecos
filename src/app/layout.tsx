@@ -1,6 +1,8 @@
 import "./globals.css";
 import "react-multi-carousel/lib/styles.css";
+import "react-toastify/dist/ReactToastify.css";
 
+import { ToastContainer } from "react-toastify";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -24,6 +26,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="pt-br">
         <body className={inter.className}>
+          <ToastContainer />
           <CartContextProvider>
             <div className="container space-y-4 mb-4">
               <NavigationBar />
