@@ -19,7 +19,7 @@ interface CartContextProps {
   addProductToCart(product: Product): void;
   setProductUnits(productId: string, quantity: number): void;
   removeProductFromCart(productId: string): void;
-  toggleProductFromCart(product: Product): void;
+  toggleProductFromCart(product: Product): boolean;
   clearCart(): void;
 }
 
@@ -93,10 +93,11 @@ export function CartContextProvider(props: CartContextProviderProps) {
   function toggleProductFromCart(product: Product) {
     if (cart[product.id]) {
       removeProductFromCart(product.id);
-      return;
+      return false;
     }
 
     addProductToCart(product);
+    return true;
   }
 
   function clearCart() {

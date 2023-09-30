@@ -11,6 +11,7 @@ import { useAuth } from "@clerk/nextjs";
 import { Heart, Loader, ShoppingBag } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface ProductActionsProps {
   product: Product;
@@ -25,7 +26,19 @@ export function ProductActions({ product }: ProductActionsProps) {
 
   function handleCartAction(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    toggleProductFromCart(product);
+
+    const hasAddedProduct = toggleProductFromCart(product);
+
+    if (hasAddedProduct) {
+      toast(`${product.name} adicionado ao carrinho`, {
+        position: "bottom-right",
+      });
+      return;
+    }
+
+    toast(`${product.name} removido do carrinho`, {
+      position: "bottom-right",
+    });
   }
 
   async function handleCheckout(event: React.MouseEvent) {
