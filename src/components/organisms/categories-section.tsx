@@ -20,14 +20,12 @@ export function CategoriesSection(props: CategoriesSectionProps) {
       <SectionHeader title="Procure por uma categoria">
         <Button
           size="icon"
-          variant="outline"
           onClick={() => carouselRef.current?.previous(undefined as any)}
         >
           <ChevronLeftIcon />
         </Button>
         <Button
           size="icon"
-          variant="outline"
           onClick={() => carouselRef.current?.next(undefined as any)}
         >
           <ChevronRightIcon />
@@ -58,7 +56,9 @@ export function CategoriesSection(props: CategoriesSectionProps) {
       >
         {props.categories.map((category) => (
           <Link key={category.id} href={`/products?category=${category.slug}`}>
-            <Button className="h-full w-full">{category.title}</Button>
+            <Button variant="outline" className="h-full w-full">
+              {category.title}
+            </Button>
           </Link>
         ))}
       </Carousel>

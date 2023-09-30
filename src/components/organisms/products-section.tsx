@@ -21,14 +21,12 @@ export function ProductsSection(props: ProductsSectionProps) {
       <SectionHeader title={props.title}>
         <Button
           size="icon"
-          variant="outline"
           onClick={() => carouselRef.current?.previous(undefined as any)}
         >
           <ChevronLeftIcon />
         </Button>
         <Button
           size="icon"
-          variant="outline"
           onClick={() => carouselRef.current?.next(undefined as any)}
         >
           <ChevronRightIcon />
