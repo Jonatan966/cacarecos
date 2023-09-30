@@ -28,7 +28,7 @@ export default function CartPage() {
   return (
     <>
       <div className="flex items-center gap-1">
-        <h2 className="flex-1 font-semibold text-lg">Meu carrinho</h2>
+        <h2 className="flex-1 font-bold text-2xl">Meu carrinho</h2>
 
         <b>Total: {formattedTotalPrice}</b>
         <CheckoutButton />

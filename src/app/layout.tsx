@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="pt-br">
         <body className={inter.className}>
           <CartContextProvider>
             <div className="container space-y-4 mb-4">

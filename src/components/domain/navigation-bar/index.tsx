@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingBag, Heart } from "lucide-react";
+import { ShoppingBag, Heart, Truck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,16 +28,24 @@ export function NavigationBar() {
         className="flex-1"
         onKeyDown={handleSearch}
       />
-      <Button size="icon" variant="ghost">
-        <Heart />
-      </Button>
+
       <Link href="/cart">
         <Button size="icon" variant="ghost">
           <ShoppingBag />
         </Button>
       </Link>
       {isSignedIn ? (
-        <UserButton afterSignOutUrl="/" />
+        <>
+          <Link href="/orders">
+            <Button size="icon" variant="ghost">
+              <Truck />
+            </Button>
+          </Link>
+          <Button size="icon" variant="ghost">
+            <Heart />
+          </Button>
+          <UserButton afterSignOutUrl="/" />
+        </>
       ) : (
         <Link href="/sign-in">
           <Button>Entrar</Button>
