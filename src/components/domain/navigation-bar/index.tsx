@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingBag, Heart, Truck } from "lucide-react";
+import { ShoppingBag, Truck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,9 +41,7 @@ export function NavigationBar() {
               <Truck />
             </Button>
           </Link>
-          <Button size="icon" variant="ghost">
-            <Heart />
-          </Button>
+
           <UserButton afterSignOutUrl="/" />
         </>
       ) : (

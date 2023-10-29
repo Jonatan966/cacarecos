@@ -57,10 +57,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </section>
       )}
 
-      <ProductsSection
-        title="Produtos relacionados"
-        products={relatedProducts}
-      />
+      {!!relatedProducts.length && (
+        <ProductsSection
+          title="Produtos relacionados"
+          products={relatedProducts}
+        />
+      )}
 
       <section>
         <SectionHeader title="Opinião dos consumidores">

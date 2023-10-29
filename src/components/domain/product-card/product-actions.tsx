@@ -8,7 +8,7 @@ import { localStorageService } from "@/services/local-storage";
 import { StorageKey } from "@/services/local-storage/types";
 import { stripeJsService } from "@/services/stripe-js";
 import { useAuth } from "@clerk/nextjs";
-import { Heart, Loader, ShoppingBag } from "lucide-react";
+import { Loader, ShoppingBag } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -93,9 +93,6 @@ export function ProductActions({ product }: ProductActionsProps) {
         onClick={handleCartAction}
       >
         <ShoppingBag />
-      </Button>
-      <Button size="icon" variant="outline" onClick={(e) => e.preventDefault()}>
-        <Heart />
       </Button>
     </div>
   );

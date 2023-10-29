@@ -72,23 +72,25 @@ export function ContentCarousel({
           {selectedItem?.action}
         </div>
       </div>
-      <div
-        className={"flex flex-col gap-2"}
-        style={{ width: `${listWidth / 4}rem` }}
-      >
-        {items.map((item, itemIndex) => (
-          <Button
-            variant={selectedItemKey === itemIndex ? "secondary" : "outline"}
-            className="flex-1 relative"
-            key={`carousel-${itemIndex}`}
-            onClick={() => setSelectedItemKey(itemIndex)}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <Image fill src={item.imageUrl} alt="bla" objectFit="contain" />
-          </Button>
-        ))}
-      </div>
+      {items.length > 1 && (
+        <div
+          className={"flex flex-col gap-2"}
+          style={{ width: `${listWidth / 4}rem` }}
+        >
+          {items.map((item, itemIndex) => (
+            <Button
+              variant={selectedItemKey === itemIndex ? "secondary" : "outline"}
+              className="flex-1 relative"
+              key={`carousel-${itemIndex}`}
+              onClick={() => setSelectedItemKey(itemIndex)}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              <Image fill src={item.imageUrl} alt="bla" objectFit="contain" />
+            </Button>
+          ))}
+        </div>
+      )}
     </section>
   );
 }
