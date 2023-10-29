@@ -20,9 +20,15 @@ export default async function ProductsPage({
         <SectionHeader title="Resultados para a busca" />
 
         <div className="grid grid-cols-4 gap-2">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {!!products.length ? (
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          ) : (
+            <span className="text-muted-foreground text-sm whitespace-nowrap col-start-1 col-end-5 text-center py-8">
+              Não há resultados correspondentes para essa busca
+            </span>
+          )}
         </div>
       </section>
     </>
