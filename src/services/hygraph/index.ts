@@ -1,3 +1,4 @@
+import { addOrder } from "./add-order";
 import { getCategories } from "./get-categories";
 import { getHomeResume } from "./get-home-resume";
 import { getOrders } from "./get-orders";
@@ -14,4 +15,5 @@ export const hygraphService = {
   getProductsByTerm,
   getProductsImagesByIDs,
   getOrders,
+  addOrder,
 };

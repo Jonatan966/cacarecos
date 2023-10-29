@@ -7,3 +7,8 @@ export interface Order {
   orderStatus: string;
   products: Pick<Product, "id" | "slug" | "images">[];
 }
+
+export interface OrderProduct {
+  productId: string;
+  quantity: number;
+}
