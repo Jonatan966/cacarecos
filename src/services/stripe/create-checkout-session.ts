@@ -1,3 +1,4 @@
+import { OrderProduct } from "@/entities/order";
 import { stripeApi } from "./api";
 import Stripe from "stripe";
 
@@ -15,7 +16,7 @@ export async function createCheckoutSession({
   customerId,
 }: CreateCheckoutSessionProps) {
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-  const productsIDs: string[] = [];
+  const orderProducts: OrderProduct[] = [];
 
   for (const product of products) {
     lineItems.push({
@@ -23,7 +24,10 @@ export async function createCheckoutSession({
       quantity: product.quantity,
     });
 
-    productsIDs.push(product.id);
+    orderProducts.push({
+      productId: product.id,
+      quantity: product.quantity,
+    });
   }
 
   const session = await stripeApi.checkout.sessions.create({
@@ -40,7 +44,7 @@ export async function createCheckoutSession({
       allowed_countries: ["BR"],
     },
     metadata: {
-      productsIDs: JSON.stringify(productsIDs),
+      orderProducts: JSON.stringify(orderProducts),
     },
   });
 
