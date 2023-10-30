@@ -40,3 +40,4 @@ Esse projeto consiste em um e-commerce simplificado
 - [ ] Sistema de avaliações dos produtos
 - [ ] Dashboard para cadastro de produtos
 - [ ] Favoritar um produto
+- [ ] Responsividade
