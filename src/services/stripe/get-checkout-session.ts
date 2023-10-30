@@ -1,3 +1,4 @@
+import { OrderProduct } from "@/entities/order";
 import { stripeApi } from "./api";
 
 export async function getCheckoutSession(sessionId: string) {
@@ -6,9 +7,9 @@ export async function getCheckoutSession(sessionId: string) {
   return {
     ...session,
     metadata: {
-      productsIDs: JSON.parse(
-        session.metadata?.productsIDs || "[]"
-      ) as string[],
+      orderProducts: JSON.parse(
+        session.metadata?.orderProducts || "[]"
+      ) as OrderProduct[],
     },
   };
 }

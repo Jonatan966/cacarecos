@@ -19,7 +19,7 @@ export default async function OrderSuccessPage({
   );
 
   const productsImages = await hygraphService.getProductsImagesByIDs(
-    session.metadata.productsIDs
+    session.metadata.orderProducts.map((orderProduct) => orderProduct.productId)
   );
 
   const amountTotalInCents = (session.amount_total || 0) / 100;
