@@ -37,6 +37,6 @@ Esse projeto consiste em um e-commerce simplificado
 
 ## Futuros Passos
 
-- [] Sistema de avaliações dos produtos
-- [] Dashboard para cadastro de produtos
-- [] Favoritar um produto
+- [ ] Sistema de avaliações dos produtos
+- [ ] Dashboard para cadastro de produtos
+- [ ] Favoritar um produto
