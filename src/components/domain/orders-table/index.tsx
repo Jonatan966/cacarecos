@@ -30,6 +30,12 @@ import { formatCurrency } from "@/utils/format-currency";
 import { Loader } from "lucide-react";
 import { formatDate } from "@/utils/format-date";
 import { Pagination } from "@/entities/pagination";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import Link from "next/link";
 
 interface Filters {
   page: number;
@@ -110,15 +116,23 @@ export function OrdersTable() {
                   <TableCell>{formatDate(new Date(order.createdAt))}</TableCell>
                   <TableCell>
                     <div className="flex">
-                      {order.orderProducts.map(({ product }) => (
-                        <Image
-                          key={product.id}
-                          src={product.images[0].url}
-                          width={64}
-                          height={64}
-                          alt={product.slug}
-                          className="h-[32px] object-contain"
-                        />
+                      {order.orderProducts.map(({ product, quantity }) => (
+                        <Tooltip key={product.id}>
+                          <TooltipTrigger>
+                            <Link href={`/products/${product.slug}`}>
+                              <Image
+                                src={product.images[0].url}
+                                width={64}
+                                height={64}
+                                alt={product.name}
+                                className="h-[32px] object-contain"
+                              />
+                            </Link>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            {quantity} unidade(s) de {`"${product.name}"`}
+                          </TooltipContent>
+                        </Tooltip>
                       ))}
                     </div>
                   </TableCell>
