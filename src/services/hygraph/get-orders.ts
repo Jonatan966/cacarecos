@@ -26,7 +26,7 @@ export async function getOrders(props: GetOrdersProps) {
         skip: $skip
         where: {
           customerId: $customerId
-          products_some: { name_contains: $search }
+          orderProducts_some: { product: { name_contains: $search } }
         }
       ) {
         pageInfo {
@@ -41,13 +41,15 @@ export async function getOrders(props: GetOrdersProps) {
             id
             orderStatus
             totalAmount
-            products {
-              id
-              name
-              slug
-              images(first: 1) {
+            orderProducts {
+              product {
                 id
-                url
+                name
+                slug
+                images(first: 1) {
+                  id
+                  url
+                }
               }
             }
           }

@@ -5,7 +5,10 @@ export interface Order {
   createdAt: Date;
   totalAmount: number;
   orderStatus: string;
-  products: Pick<Product, "id" | "slug" | "images">[];
+  orderProducts: {
+    product: Pick<Product, "id" | "slug" | "images">;
+    quantity: number;
+  }[];
 }
 
 export interface OrderProduct {

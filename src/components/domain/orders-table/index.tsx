@@ -110,7 +110,7 @@ export function OrdersTable() {
                   <TableCell>{formatDate(new Date(order.createdAt))}</TableCell>
                   <TableCell>
                     <div className="flex">
-                      {order.products.map((product) => (
+                      {order.orderProducts.map(({ product }) => (
                         <Image
                           key={product.id}
                           src={product.images[0].url}
