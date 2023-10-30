@@ -1,5 +1,5 @@
 import { hygraphService } from "@/services/hygraph";
-import { auth } from "@clerk/nextjs";
+import { auth, clerkClient } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -16,8 +16,10 @@ export async function GET(req: NextRequest) {
     });
   }
 
+  const user = await clerkClient.users.getUser(userId);
+
   const ordersResponse = await hygraphService.getOrders({
-    customerId: userId,
+    customerId: user.privateMetadata.customerId as string,
     page,
     search,
   });
