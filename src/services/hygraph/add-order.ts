@@ -20,7 +20,7 @@ export async function addOrder(props: AddOrderProps) {
     mutation AddOrder(
       $checkoutId: String
       $customerId: String
-      $totalAmount: Int
+      $totalAmount: Float
       $products: [OrderProductCreateInput!]
     ) {
       createOrder(
