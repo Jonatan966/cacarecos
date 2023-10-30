@@ -33,12 +33,16 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  await hygraphService.addOrder({
+  const amountTotalInCents = (checkoutSession.amount_total || 0) / 100;
+
+  const createdOrder = await hygraphService.addOrder({
     checkoutId: checkoutSession.id,
     customerId: String(checkoutSession.customer),
-    totalAmount: checkoutSession.amount_total!,
+    totalAmount: amountTotalInCents,
     products: orderProducts,
   });
+
+  await hygraphService.publishOrder(createdOrder.id);
 
   return new NextResponse(undefined, {
     status: 204,
