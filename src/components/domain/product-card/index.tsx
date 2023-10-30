@@ -22,7 +22,7 @@ export function ProductCard({ product }: ProductCardProps) {
             src={product.images[0].url}
             fill
             alt="bla"
-            objectFit="contain"
+            className="object-contain"
           />
         </div>
         <div className="flex whitespace-nowrap">

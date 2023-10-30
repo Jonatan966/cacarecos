@@ -61,7 +61,7 @@ export function ContentCarousel({
             fill
             src={selectedItem.imageUrl}
             alt="bla"
-            objectFit="contain"
+            className="object-contain"
           />
         </div>
         <div
@@ -86,7 +86,12 @@ export function ContentCarousel({
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <Image fill src={item.imageUrl} alt="bla" objectFit="contain" />
+              <Image
+                fill
+                src={item.imageUrl}
+                alt={item.description || "carousel image"}
+                className="object-contain"
+              />
             </Button>
           ))}
         </div>
