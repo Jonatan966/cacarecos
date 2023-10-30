@@ -42,6 +42,7 @@ export async function getOrders(props: GetOrdersProps) {
             orderStatus
             totalAmount
             orderProducts {
+              quantity
               product {
                 id
                 name

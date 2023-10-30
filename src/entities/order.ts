@@ -6,7 +6,7 @@ export interface Order {
   totalAmount: number;
   orderStatus: string;
   orderProducts: {
-    product: Pick<Product, "id" | "slug" | "images">;
+    product: Pick<Product, "id" | "name" | "slug" | "images">;
     quantity: number;
   }[];
 }
