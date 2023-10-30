@@ -9,6 +9,7 @@ import { Inter } from "next/font/google";
 
 import { NavigationBar } from "@/components/domain/navigation-bar";
 import { CartContextProvider } from "@/components/providers/cart-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,7 @@ export default function RootLayout({
             <div className="container space-y-4 mb-4">
               <NavigationBar />
 
-              {children}
+              <TooltipProvider>{children}</TooltipProvider>
             </div>
           </CartContextProvider>
         </body>
