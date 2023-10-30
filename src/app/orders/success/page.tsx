@@ -35,6 +35,7 @@ export default async function OrderSuccessPage({
             alt={image.alt}
             width={96}
             height={96}
+            className="object-contain max-h-24"
             key={image.id}
           />
         ))}
