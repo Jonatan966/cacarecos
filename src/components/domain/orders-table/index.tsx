@@ -149,7 +149,10 @@ export function OrdersTable() {
               ))}
             </TableBody>
           </Table>
-          <div className="flex justify-end gap-1 mt-1">
+          <div className="flex justify-end gap-1 mt-1 items-center">
+            <span className="text-sm text-muted-foreground mr-2">
+              Página {filters.page + 1}
+            </span>
             <Button
               size="sm"
               variant="outline"
